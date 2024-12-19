@@ -86,7 +86,7 @@
             <h1>Solving Puzzles With <span>Precision</span></h1>
             <p>Transforming Visions into Unstoppable Brands</p>
             <div class="d-flex">
-              <a onclick="showModal()" class="btn-get-started">Get Started</a>
+              <a href="service.html" class="btn-get-started">Get Started</a>
               <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
             </div>
           </div>
@@ -94,7 +94,7 @@
         </div>
       </div>
 
-      <div class="modal" id="enquiryModal">
+      <!-- <div class="modal" id="enquiryModal">
         <div class="modal-content">
             <a onclick="closeModal()" style="text-align: right;cursor: pointer;">X</a>
             <h2>Get Service</h2>
@@ -209,9 +209,9 @@
             }
             </script>
         </div>
-    </div>
+    </div> -->
     
-    <script>
+    <!-- <script>
         function showModal() {
             document.getElementById('enquiryModal').style.display = 'flex';
         }
@@ -219,7 +219,7 @@
         function closeModal() {
             document.getElementById('enquiryModal').style.display = 'none';
         }
-    </script>
+    </script> -->
 
       <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
         <defs>
@@ -289,7 +289,7 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/social.jpg" class="img-fluid" alt="">
+              <div class="pic"><img src="assets/img/gallery/smmg.png" class="img-fluid" alt="">
               <a href="socialmediaservice.html" class="btnn">Social Media Marketing</a>
               </div>
             </div>
@@ -297,7 +297,7 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/websit.jpg" class="img-fluid" alt="">
+              <div class="pic"><img src="assets/img/gallery/webd.png" class="img-fluid" alt="">
                 <a href="webservice.html" class="btnn">website Development</a>
               </div>
             </div>
@@ -305,7 +305,7 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/conten.jpg" class="img-fluid" alt="">
+              <div class="pic"><img src="assets/img/gallery/20943483.png" class="img-fluid" alt="">
                 <a href="contentservice.html" class="btnn">Content Marketing</a>
               </div>
             </div>
@@ -601,9 +601,9 @@
 
       </div>
 
-    </section>
+    </section> -->
 
-    Team Section -->
+    <!-- Team Section -->
     <!-- <section id="team" class="team section">
 
       
@@ -848,35 +848,86 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="#" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" onsubmit="redirectToWhatsApp(event)">
               <div class="row gy-4">
-
+            
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" oninput="validateForm()">
+                  <small id="nameError" class="text-danger" style="display: none;">Please enter your name</small>
                 </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+            
+                <div class="col-md-6">
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" oninput="validateForm()">
+                  <small id="emailError" class="text-danger" style="display: none;">Please enter a valid email</small>
                 </div>
-
+            
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" oninput="validateForm()">
+                  <small id="subjectError" class="text-danger" style="display: none;">Please enter a subject</small>
                 </div>
-
+            
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  <textarea id="message" class="form-control" name="message" rows="6" placeholder="Message" oninput="validateForm()"></textarea>
+                  <small id="messageError" class="text-danger" style="display: none;">Please enter a message</small>
                 </div>
-
+            
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <!-- <div class="loading">Loading...</div> -->
+                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+            
+                  <button type="submit" id="sendButton" disabled>Send Message</button>
                 </div>
-
+            
               </div>
             </form>
+            
+            <script>
+              function validateForm() {
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const subject = document.getElementById("subject").value.trim();
+                const message = document.getElementById("message").value.trim();
+                const sendButton = document.getElementById("sendButton");
+            
+                // Validate individual fields
+                document.getElementById("nameError").style.display = name ? "none" : "block";
+                document.getElementById("emailError").style.display = email ? "none" : "block";
+                document.getElementById("subjectError").style.display = subject ? "none" : "block";
+                document.getElementById("messageError").style.display = message ? "none" : "block";
+            
+                // Enable the button only if all fields are valid
+                sendButton.disabled = !(name && email && subject && message);
+              }
+            
+              function redirectToWhatsApp(event) {
+                event.preventDefault(); // Prevent form submission
+            
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const subject = document.getElementById("subject").value.trim();
+                const message = document.getElementById("message").value.trim();
+            
+                // Validate again on submit
+                validateForm();
+            
+                // If any field is invalid, stop submission
+                if (!name || !email || !subject || !message) {
+                  return;
+                }
+            
+                // Show success message
+                document.querySelector(".sent-message").style.display = "block";
+            
+                // Format the data for WhatsApp
+                const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0ASubject: ${subject}%0AMessage: ${message}`;
+                const whatsappURL = `https://wa.me/+917094858696?text=${whatsappMessage}`;
+            
+                // Redirect to WhatsApp after a brief delay
+                setTimeout(() => {
+                  window.open(whatsappURL, "_blank");
+                }, 1500); // 1.5 seconds delay
+              }
+            </script>
           </div><!-- End Contact Form -->
 
         </div>
@@ -886,6 +937,12 @@
     </section><!-- /Contact Section -->
 
   </main>
+
+  <div class="whatsapp-icon">
+		<a href="https://wa.me/+917094858696?text=Hello,%20I%20would%20like%20to%20enquire%20about%20the%20Services%20in%20Puzzle%20Diplomats%20Could%20you%20provide%20more%20details%20on%20available%20Services%20%20the%20process?" target="_blank">
+			<img src="/assets/img/whatsapp-logo.png" alt="WhatsApp Icon">
+		</a>
+	</div>
 
   <footer id="footer" class="footer dark-background">
 
@@ -912,22 +969,22 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="whychooseus.html">Why Choose Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="socialmediaservice.html">Social Media Marketing</a></li>
+            <li><a href="webservice.html">Web Development</a></li>
+            <li><a href="contentservice.html">Content Writing</a></li>
+            <li><a href="googleadservice.html">Google Ads</a></li>
+            <li><a href="youtubeadservice.html">Youtube Ads</a></li>
           </ul>
         </div>
 
